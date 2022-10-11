@@ -36,7 +36,7 @@ assert 5 ≡ count_words ' this vector has extra blanks ' ⍝ just counting the 
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P4_Keeping_Things_In_Balance
 ⍝ 4: Keeping Things In Balance
 ⍝ Write an APL dfn which returns a 1 if the opening and closing parentheses in a character vector are balanced, or a zero otherwise.
-balancedParen ← {(((|≡⊢) +⍀) ∧ 0=+/) (⍵='(')  - (⍵=')')}
+balancedParen ← {(((|≡⊢) +⍀) ∧ 0=+/) (⍵='(') - (⍵=')')}
 
 assert 1 ≡ balancedParen '((2×3)+4)'
 assert 1 ≡ balancedParen ''
@@ -54,3 +54,15 @@ identityMatrix ← {m ← ⍵ ⍵⍴0 ⋄ (0 0⍉m) ← ⍵/1 ⋄ m}
 
 assert (1 1⍴1) ≡ identityMatrix 1
 assert (0 0⍴0) ≡ identityMatrix 0
+⎕ ← '05 ok'
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range
+⍝ 6: Home On The Range
+⍝ Write a dfn which returns the magnitude of the range (i.e. the difference between the lowest and highest values) of a numeric array.
+rangeMagnitude ← {⍬≡⍵: 0 ⋄ ((⌈/)⍣{0=⍴⍴⍺} - (⌊/)⍣{0=⍴⍴⍺}) ⍵}
+
+assert 25 ≡ rangeMagnitude 19 ¯3 7.6 22
+assert  0 ≡ rangeMagnitude 101 ⍝ should work with a scalar argument
+assert 50 ≡ rangeMagnitude 2 3⍴10 20 30 40 50 60 ⍝ should work with arrays of any number of dimensions
+assert  0 ≡ rangeMagnitude ⍳0 ⍝ including empty arrays
+⎕ ← '06 ok'
