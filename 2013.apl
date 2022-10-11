@@ -66,3 +66,13 @@ assert  0 ≡ rangeMagnitude 101 ⍝ should work with a scalar argument
 assert 50 ≡ rangeMagnitude 2 3⍴10 20 30 40 50 60 ⍝ should work with arrays of any number of dimensions
 assert  0 ≡ rangeMagnitude ⍳0 ⍝ including empty arrays
 ⎕ ← '06 ok'
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat
+⍝ 7: Float Your Boat
+⍝ Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.
+getFloats ← {(⌈ 1|⍵) / ⍵}
+
+assert 14.2 3.1 ¯1.1 ≡ getFloats 14.2 9 ¯3 3.1 0 ¯1.1
+assert ⍬            ≡ getFloats 1 3 5 ⍝ should return an empty vector
+assert (,3.1415)     ≡ getFloats 3.1415
+⎕ ← '07 ok'
