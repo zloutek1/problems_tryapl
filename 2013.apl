@@ -22,3 +22,13 @@ assert 100 ≡ percentage_passing 80 90 100
 assert 100 ≡ percentage_passing ⍳0 ⍝ all grades in an empty vector are passing
 ⎕ ← '02 ok'
 
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P3_What_Is_In_a_Word
+⍝ 3: What Is In a Word
+⍝ Write a dfn which returns the number of words in the given character scalar or vector.
+⍝ For simplicity’s sake, you can consider the space character ' ' to be the only word separator.
+count_words ← {≢ (⊂'') ~⍨ 1↓¨ ' '(=⊂⊢) ' ', ⍵}
+
+assert 4 ≡ count_words 'Testing one, two, three'
+assert 0 ≡ count_words ''
+assert 5 ≡ count_words ' this vector has extra blanks ' ⍝ just counting the blanks won't work
+⎕ ← '03 ok'
