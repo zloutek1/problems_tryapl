@@ -11,6 +11,8 @@ assert (1⍴1) ≡ odd 1
 assert (0⍴1) ≡ odd 0
 ⎕ ← '01 ok'
 
+
+
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P2_Making_The_Grade
 ⍝ 2: Making The Grade
 ⍝ Write a dfn which returns the percent (from 0 to 100) of passing (65 or higher) grades in a vector of grades.
@@ -22,6 +24,8 @@ assert 100 ≡ percentage_passing 80 90 100
 assert 100 ≡ percentage_passing ⍳0 ⍝ all grades in an empty vector are passing
 ⎕ ← '02 ok'
 
+
+
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P3_What_Is_In_a_Word
 ⍝ 3: What Is In a Word
 ⍝ Write a dfn which returns the number of words in the given character scalar or vector.
@@ -32,6 +36,8 @@ assert 4 ≡ count_words 'Testing one, two, three'
 assert 0 ≡ count_words ''
 assert 5 ≡ count_words ' this vector has extra blanks ' ⍝ just counting the blanks won't work
 ⎕ ← '03 ok'
+
+
 
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P4_Keeping_Things_In_Balance
 ⍝ 4: Keeping Things In Balance
@@ -46,6 +52,8 @@ assert 0 ≡ balancedParen '(()'
 assert 0 ≡ balancedParen ')'
 ⎕ ← '04 ok'
 
+
+
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P5_Identity_Crisis
 ⍝ 5: Identity Crisis
 ⍝ An identity matrix is a square matrix (table) of 0 with 1’s in the main diagonal.
@@ -56,6 +64,8 @@ assert (5 5⍴1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1) ≡ identityMat
 assert (1 1⍴1) ≡ identityMatrix 1
 assert (0 0⍴0) ≡ identityMatrix 0
 ⎕ ← '05 ok'
+
+
 
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P6_Home_On_The_Range
 ⍝ 6: Home On The Range
@@ -68,6 +78,8 @@ assert 50 ≡ rangeMagnitude 2 3⍴10 20 30 40 50 60 ⍝ should work with arrays
 assert  0 ≡ rangeMagnitude ⍳0 ⍝ including empty arrays
 ⎕ ← '06 ok'
 
+
+
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P7_Float_Your_Boat
 ⍝ 7: Float Your Boat
 ⍝ Write a dfn which selects the floating point (non-integer) numbers from a numeric vector.
@@ -78,6 +90,8 @@ assert ⍬            ≡ getFloats 1 3 5 ⍝ should return an empty vector
 assert (,3.1415)     ≡ getFloats 3.1415
 ⎕ ← '07 ok'
 
+
+
 ⍝ https://problems.tryapl.org/psets/2013.html?goto=P8_Go_Forth_And_Multiply
 ⍝ 8: Go Forth And Multiply
 ⍝ Write a dfn which produces a multiplication table.
@@ -87,3 +101,16 @@ assert (5 5⍴1 2  3  4  5 2 4  6  8  10 3 6  9  12 15 4 8  12 16 20 5 10 15 20 
 assert (1 1⍴1) ≡ multTable 1 ⍝ should return a 1×1 matrix
 assert (0 0⍴0) ≡ multTable 0 ⍝ should return a 0×0 matrix
 ⎕ ← '08 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P9_It_Is_a_Moving_Experience
+⍝ 9: It Is a Moving Experience
+⍝ Write a dfn which produces n month moving averages for a year’s worth of data.
+movingAverages ← {⍺÷⍨ ⍺+⌿ ⍵}
+
+sales ← 200 300 2700 3400 100 2000 400 2100 3500 3000 4700 4300
+assert (250 1500 3050 1750 1050 1200 1250 2800 3250 3850 4500) ≡ 2 movingAverages sales
+assert (1770 2220 2620) ≡ 10 movingAverages sales
+assert sales ≡ 1 movingAverages sales
+⎕ ← '09 ok'
