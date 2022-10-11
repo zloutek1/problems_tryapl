@@ -59,6 +59,7 @@ assert 0 ≡ balancedParen ')'
 ⍝ An identity matrix is a square matrix (table) of 0 with 1’s in the main diagonal.
 ⍝ Write an APL dfn which produces an n×n identity matrix.
 identityMatrix ← {m ← ⍵ ⍵⍴0 ⋄ (0 0⍉m) ← ⍵/1 ⋄ m}
+identityMatrix ← {⍵ ⍵⍴(⍵+1)↑1}
 
 assert (5 5⍴1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1) ≡ identityMatrix 5
 assert (1 1⍴1) ≡ identityMatrix 1
@@ -114,3 +115,19 @@ assert (250 1500 3050 1750 1050 1200 1250 2800 3250 3850 4500) ≡ 2 movingAvera
 assert (1770 2220 2620) ≡ 10 movingAverages sales
 assert sales ≡ 1 movingAverages sales
 ⎕ ← '09 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P10_Solution_Salvation
+⍝ 10: Solution Salvation
+⍝ Many people have taken some sort of algebra class where you are presented with a set of linear equations like:
+⍝   3x + 2y = 13
+⍝   x - y = 1
+⍝ The answer in this case is x=3 and y=2
+⍝ Write a dfn which solves this type of problem. Hint: this is the easiest of all of the problems presented here.
+⍝ The left argument is a vector of the values for the equations and the right argument is a matrix of the coefficients.
+linalg ← {(⌹⍵) +.× ⍺}
+
+assert (3 2)    ≡ 13 1  linalg 2 2⍴3 2 1 ¯1
+assert (¯1 3 1) ≡ 2 6 4 linalg 3 3⍴4 1 3 2 2 2 6 3 1
+⎕ ← '10 ok'
