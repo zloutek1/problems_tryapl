@@ -97,6 +97,7 @@ assert (,3.1415)     ≡ getFloats 3.1415
 ⍝ 8: Go Forth And Multiply
 ⍝ Write a dfn which produces a multiplication table.
 multTable ← { t ← ⍵ ⍵⍴(1+⍳⍵) ⋄ t × ⍉t }
+multTable ← ∘.×⍨1+⍳
 
 assert (5 5⍴1 2  3  4  5 2 4  6  8  10 3 6  9  12 15 4 8  12 16 20 5 10 15 20 25) ≡ multTable 5
 assert (1 1⍴1) ≡ multTable 1 ⍝ should return a 1×1 matrix
@@ -109,6 +110,7 @@ assert (0 0⍴0) ≡ multTable 0 ⍝ should return a 0×0 matrix
 ⍝ 9: It Is a Moving Experience
 ⍝ Write a dfn which produces n month moving averages for a year’s worth of data.
 movingAverages ← {⍺÷⍨ ⍺+⌿ ⍵}
+movingAverages ← +⌿÷⊣
 
 sales ← 200 300 2700 3400 100 2000 400 2100 3500 3000 4700 4300
 assert (250 1500 3050 1750 1050 1200 1250 2800 3250 3850 4500) ≡ 2 movingAverages sales
@@ -127,6 +129,7 @@ assert sales ≡ 1 movingAverages sales
 ⍝ Write a dfn which solves this type of problem. Hint: this is the easiest of all of the problems presented here.
 ⍝ The left argument is a vector of the values for the equations and the right argument is a matrix of the coefficients.
 linalg ← {(⌹⍵) +.× ⍺}
+linalg ← ⌹
 
 assert (3 2)    ≡ 13 1  linalg 2 2⍴3 2 1 ¯1
 assert (¯1 3 1) ≡ 2 6 4 linalg 3 3⍴4 1 3 2 2 2 6 3 1
