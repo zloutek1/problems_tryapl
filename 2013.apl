@@ -45,3 +45,12 @@ assert 0 ≡ balancedParen ')(2×3)+4('
 assert 0 ≡ balancedParen '(()'
 assert 0 ≡ balancedParen ')'
 ⎕ ← '04 ok'
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P5_Identity_Crisis
+⍝ 5: Identity Crisis
+⍝ An identity matrix is a square matrix (table) of 0 with 1’s in the main diagonal.
+⍝ Write an APL dfn which produces an n×n identity matrix.
+identityMatrix ← {m ← ⍵ ⍵⍴0 ⋄ (0 0⍉m) ← ⍵/1 ⋄ m}
+
+assert (1 1⍴1) ≡ identityMatrix 1
+assert (0 0⍴0) ≡ identityMatrix 0
