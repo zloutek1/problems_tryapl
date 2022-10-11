@@ -26,9 +26,22 @@ assert 100 ≡ percentage_passing ⍳0 ⍝ all grades in an empty vector are pas
 ⍝ 3: What Is In a Word
 ⍝ Write a dfn which returns the number of words in the given character scalar or vector.
 ⍝ For simplicity’s sake, you can consider the space character ' ' to be the only word separator.
-count_words ← {≢ (⊂'') ~⍨ 1↓¨ ' '(=⊂⊢) ' ', ⍵}
+count_words ← ≢ (⊂'') ~⍨ 1↓¨ ' '(=⊂⊢) ' ', ⊢
 
 assert 4 ≡ count_words 'Testing one, two, three'
 assert 0 ≡ count_words ''
 assert 5 ≡ count_words ' this vector has extra blanks ' ⍝ just counting the blanks won't work
 ⎕ ← '03 ok'
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P4_Keeping_Things_In_Balance
+⍝ 4: Keeping Things In Balance
+⍝ Write an APL dfn which returns a 1 if the opening and closing parentheses in a character vector are balanced, or a zero otherwise.
+balancedParen ← {(((|≡⊢) +⍀) ∧ 0=+/) (⍵='(')  - (⍵=')')}
+
+assert 1 ≡ balancedParen '((2×3)+4)'
+assert 1 ≡ balancedParen ''
+assert 1 ≡ balancedParen 'hello world!'
+assert 0 ≡ balancedParen ')(2×3)+4('
+assert 0 ≡ balancedParen '(()'
+assert 0 ≡ balancedParen ')'
+⎕ ← '04 ok'
