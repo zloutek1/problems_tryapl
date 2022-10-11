@@ -52,6 +52,7 @@ assert 0 ≡ balancedParen ')'
 ⍝ Write an APL dfn which produces an n×n identity matrix.
 identityMatrix ← {m ← ⍵ ⍵⍴0 ⋄ (0 0⍉m) ← ⍵/1 ⋄ m}
 
+assert (5 5⍴1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1) ≡ identityMatrix 5
 assert (1 1⍴1) ≡ identityMatrix 1
 assert (0 0⍴0) ≡ identityMatrix 0
 ⎕ ← '05 ok'
@@ -76,3 +77,13 @@ assert 14.2 3.1 ¯1.1 ≡ getFloats 14.2 9 ¯3 3.1 0 ¯1.1
 assert ⍬            ≡ getFloats 1 3 5 ⍝ should return an empty vector
 assert (,3.1415)     ≡ getFloats 3.1415
 ⎕ ← '07 ok'
+
+⍝ https://problems.tryapl.org/psets/2013.html?goto=P8_Go_Forth_And_Multiply
+⍝ 8: Go Forth And Multiply
+⍝ Write a dfn which produces a multiplication table.
+multTable ← { t ← ⍵ ⍵⍴(1+⍳⍵) ⋄ t × ⍉t }
+
+assert (5 5⍴1 2  3  4  5 2 4  6  8  10 3 6  9  12 15 4 8  12 16 20 5 10 15 20 25) ≡ multTable 5
+assert (1 1⍴1) ≡ multTable 1 ⍝ should return a 1×1 matrix
+assert (0 0⍴0) ≡ multTable 0 ⍝ should return a 0×0 matrix
+⎕ ← '08 ok'
