@@ -47,3 +47,16 @@ assert ''               ≡ rmExtraSpaces '' ⍝ should return an empty vector
 assert 'hello world!'   ≡ rmExtraSpaces 'hello world!'
 assert ''               ≡ rmExtraSpaces '  ' ⍝ vector of only spaces should return empty vector
 ⎕ ← '04 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P5_Mirror_Mirror
+⍝ 5: Mirror Mirror
+⍝ A palindrome is a word or phrase whose letters read the same forwards and backwards. Write a dfn which returns a 1 if its character vector argument is a palindrome, 0 otherwise. For simplicity’s sake, you may assume that the vector is all one case.
+isPalindrome ← {p≡⌽p←⍵/⍨ ⎕A∊⍨ 1⎕C ⍵}
+
+assert 1 ≡ isPalindrome 'a man, a plan, a canal, panama!'
+assert 1 ≡ isPalindrome '' ⍝ a phrase of 0 length is a palindrome
+assert 1 ≡ isPalindrome 'a' ⍝ as is a single letter phrase
+assert 0 ≡ isPalindrome 'APL' ⍝ APL may be cool, but it's not a palindrome
+⎕ ← '05 ok'
