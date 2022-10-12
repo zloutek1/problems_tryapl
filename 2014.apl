@@ -22,3 +22,28 @@ assert 'APL is RLLY cl' ≡ removeInteriorVowels 'APL is REALLY cool'
 assert '' ≡ removeInteriorVowels '' ⍝ an empty vector arg should return an empty vector
 assert 'a' ≡ removeInteriorVowels 'a' ⍝ should work with a single character message
 ⎕ ← '02 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P3_Tell_a_Fib
+⍝ 3: Tell a Fib
+⍝ Write a dfn that takes an integer right argument and returns that number of terms in the Fibonacci sequence.
+fib ← {⍺ ← 1 1 ⋄ ⍵=0: ⊃⍺ ⋄ (1↓⍺, +/⍺)∇(⍵-1)}¨⍳
+
+assert (1 1 2 3 5 8 13 21 34 55) ≡ fib 10
+assert (,1) ≡ fib 1
+assert ⍬   ≡ fib 0 ⍝ should return an empty vector
+⎕ ← '03 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P4_Space_The_Final_Frontier
+⍝ 4: Space The Final Frontier
+⍝ Write a dfn that removes extraneous (leading, trailing, and multiple) spaces from a character vector.
+rmExtraSpaces ← 1↓ ∘ ∊ ' ',¨ ' '∘(≠⊆⊢)
+
+assert 'this is a test' ≡ rmExtraSpaces '  this  is a   test  '
+assert ''               ≡ rmExtraSpaces '' ⍝ should return an empty vector
+assert 'hello world!'   ≡ rmExtraSpaces 'hello world!'
+assert ''               ≡ rmExtraSpaces '  ' ⍝ vector of only spaces should return empty vector
+⎕ ← '04 ok'
