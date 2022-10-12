@@ -103,3 +103,20 @@ assert  5 ≡ 2 2 distance 5 6 ⍝ two-dimensional space
 assert  0 ≡ ⍬ distance ⍬ ⍝ zero dimension space
 assert 10 ≡ 2 2 3 4 distance 3 7 10 9 ⍝ four-dimensions
 ⎕ ← '08 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P9_Going_Ballistic
+⍝ 9: Going Ballistic
+⍝ The following formula gives the horizontal distance a projectile travels:
+⍝         v^2 * sin(2θ)
+⍝   d = ---------------
+⍝             g
+⍝Where: v is the initial velocity, θ is the trajectory in degrees, d is the horizontal distance and G is the gravitational constant.
+⍝Write a dfn which calculates the distance (in meters) a projectile travels given an initial velocity in meters per second and a trajectory in degrees. Use 9.8 meters per second squared as the gravitational constant.
+horDistance ← {9.8÷⍨(⍺*2)×(1○ 2× 180÷⍨ ○⍵)}
+
+assert 1E¯6  ≥ 1020.408163     - 100 horDistance 45 ⍝ 100 meters per second and 45 degree trajectory
+assert 1E¯0  ≥ 0               - 0 horDistance 45 ⍝ no velocity = no distance
+assert 1E¯13 ≥ 1.249639591E¯13 - 100 horDistance 90 ⍝ shooting straight up = no distance
+⎕ ← '09 ok'
