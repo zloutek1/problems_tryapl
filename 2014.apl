@@ -90,3 +90,16 @@ countRevolutions ← {¯1+ ⍵÷⍨ (⍵∘+⍣{0=1|⍵}) ⍵}
 2 ≡ 10 countRevolutions  5 ⍝ a mobile circle that's half the size needs to make 2 revolutions
 5 ≡  5 countRevolutions  7 ⍝ a mobile circle of diameter 7 needs to make 5 revolutions around a stationary circle of diameter 5
 ⎕ ← '07 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P8_Go_The_Distance
+⍝ 8: Go The Distance
+⍝ Write a dfn that returns the distance between two points in a space of any number of dimensions.
+distance ← {0.5*⍨ +/ 2*⍨ ⍵-⍺}
+
+assert  3 ≡ 2 distance 5 ⍝ one-dimensional space
+assert  5 ≡ 2 2 distance 5 6 ⍝ two-dimensional space
+assert  0 ≡ ⍬ distance ⍬ ⍝ zero dimension space
+assert 10 ≡ 2 2 3 4 distance 3 7 10 9 ⍝ four-dimensions
+⎕ ← '08 ok'
