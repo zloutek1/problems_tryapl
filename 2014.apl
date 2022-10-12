@@ -73,3 +73,20 @@ assert totalPossibleRolls 6 4 ≡ ↑(2 1)(3 2)(4 3)(5 4)(6 4)(7 4)(8 3)(9 2)(10
 assert totalPossibleRolls 3  ≡ ↑(1 1)(2 1)(3 1) ⍝ a single 3-sided die
 assert totalPossibleRolls ⍬ ≡ ↑(0 1) ⍝ no dice
 ⎕ ← '06 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P7_Revolutionary_Thinking
+⍝ 7: Revolutionary Thinking
+⍝ Imagine there are two circles that are tangent to one another. One circle is stationary, the other can “roll” around the stationary circle.  
+⍝          .--.
+⍝         /    \  .-.
+⍝         \    / (   )
+⍝          '--'   '-'
+⍝ Write a dfn which takes the diameters of the stationary and mobile circles and returns the number of revolutions the mobile must traverse until the tangent points meet again.
+countRevolutions ← {¯1+ ⍵÷⍨ (⍵∘+⍣{0=1|⍵}) ⍵}
+
+1 ≡ 10 countRevolutions 10 ⍝ identically sized circles
+2 ≡ 10 countRevolutions  5 ⍝ a mobile circle that's half the size needs to make 2 revolutions
+5 ≡  5 countRevolutions  7 ⍝ a mobile circle of diameter 7 needs to make 5 revolutions around a stationary circle of diameter 5
+⎕ ← '07 ok'
