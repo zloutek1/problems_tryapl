@@ -60,3 +60,16 @@ assert 1 ≡ isPalindrome '' ⍝ a phrase of 0 length is a palindrome
 assert 1 ≡ isPalindrome 'a' ⍝ as is a single letter phrase
 assert 0 ≡ isPalindrome 'APL' ⍝ APL may be cool, but it's not a palindrome
 ⎕ ← '05 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2014.html?goto=P6_Roll_The_Dice
+⍝ 6: Roll The Dice
+⍝ Write a dfn that takes an integer vector representing the sides of a number of dice and returns a 2 column matrix of the number of ways each possible total of the dice can be rolled.
+totalPossibleRolls ← {⍺ (≢⍵)}⌸(×/)⍴(+/¨1+⍳)
+
+assert totalPossibleRolls 6 6 ≡ ↑(2 1)(3 2)(4 3)(5 4)(6 5)(7 6)(8 5)(9 4)(10 3)(11 2)(12 1) ⍝ 2 six-sided dice
+assert totalPossibleRolls 6 4 ≡ ↑(2 1)(3 2)(4 3)(5 4)(6 4)(7 4)(8 3)(9 2)(10 1) ⍝ a six-sided and a four-sided die
+assert totalPossibleRolls 3  ≡ ↑(1 1)(2 1)(3 1) ⍝ a single 3-sided die
+assert totalPossibleRolls ⍬ ≡ ↑(0 1) ⍝ no dice
+⎕ ← '06 ok'
