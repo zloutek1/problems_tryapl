@@ -26,3 +26,16 @@ assert 0 ≡ longestStream 1
 assert 0 ≡ longestStream 9 8 7 6 5 4
 assert 3 ≡ longestStream 1 5 3 4 2 6 7 8
 ⎕ ← '02 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2015.html?goto=P3_Farey_Tale
+⍝ 3: Farey Tale
+⍝ In mathematics, the Farey_sequence of order n is the sequence of completely reduced fractions between 0 and 1 which, when in lowest terms, have denominators less than or equal to n, arranged in order of increasing size. Each Farey sequence starts with the value 0, denoted by the fraction 0⁄1, and ends with the value 1, denoted by the fraction 1⁄1.
+⍝ Write a function that takes an integer right argument and returns a vector of the terms in the Farey sequence of that order. Each element in the returned vector is itself a 2-element vector of numerator and denominator for the corresponding term.
+farey ← {⍺ ← (0 1)(1 ⍵) ⋄ (a b)(c d) ← ¯2↑⍺ ⋄ c>⍵: ¯1↓⍺ ⋄ k←⌊(⍵ + b) ÷ d ⋄ (⍺, ⊂(a -⍨ k × c) (b -⍨ k × d))∇⍵}
+
+assert farey 0 ≡ ⊂(0 1)
+assert farey 1 ≡ (0 1)(1 1)
+assert farey 5 ≡ (0 1)(1 5)(1 4)(1 3)(2 5)(1 2)(3 5)(2 3)(3 4)(4 5)(1 1)
+⎕ ← '03 ok'
