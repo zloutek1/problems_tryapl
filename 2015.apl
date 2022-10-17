@@ -39,3 +39,18 @@ assert farey 0 ≡ ⊂(0 1)
 assert farey 1 ≡ (0 1)(1 1)
 assert farey 5 ≡ (0 1)(1 5)(1 4)(1 3)(2 5)(1 2)(3 5)(2 3)(3 4)(4 5)(1 1)
 ⎕ ← '03 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2015.html?goto=P4_PDI_Progressive_Dyadic_Iota
+⍝ 4: PDI - Progressive Dyadic Iota
+⍝ The index-of function X⍳Y returns a simple integer vector that identifies where the major cells of Y are first found in X. If a major cell of Y cannot be found in X, then the corresponding item of the returned array will be 1+≢X.
+⍝ Example of X⍳Y:
+⍝      'DYALOG APL' ⍳ 'AAALLLB' 
+⍝ 3 3 3 4 4 4 11
+⍝ Progressive dyadic iota is similar to ⍳ except that it returns the index of subsequent matches in the left argument until they are exhausted. Write a function that implements progressive dyadic iota.
+dIota ← {i←⍺ ⋄ s←{↓(↑⍵ (((⎕IO+≢i)/⍨(≢⍵)-(≢m)),⍨m←⍸i=⍺))}⌸⍵ ⋄ (∊(1+⎕IO)⌷⍉s)[∊⎕IO⌷⍉s]}
+
+assert 2 7 10 3 9 10 10 ≡ 'DYALOG APL' dIota 'AAALLLB' 
+assert 0 0 0 0 ≡ '' dIota 'test'  ⍝ should work with empty left argument 
+assert ⍬ ≡ 'test' dIota ''  ⍝ should work with empty right argument
