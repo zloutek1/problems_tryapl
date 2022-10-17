@@ -54,3 +54,20 @@ dIota ← {i←⍺ ⋄ s←{↓(↑⍵ (((⎕IO+≢i)/⍨(≢⍵)-(≢m)),⍨m�
 assert 2 7 10 3 9 10 10 ≡ 'DYALOG APL' dIota 'AAALLLB' 
 assert 0 0 0 0 ≡ '' dIota 'test'  ⍝ should work with empty left argument 
 assert ⍬ ≡ 'test' dIota ''  ⍝ should work with empty right argument
+⎕ ← '04 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2015.html?goto=P5_Hes_so_mean_he_has_no_standard_deviation
+⍝ 5: He’s so mean, he has no standard deviation
+⍝ The standard deviation of a population is calculated by taking the square root of the average of the squared differences of the values from their average value. The mathematical formula is:
+⍝       /  Σ (x - x̄)²
+⍝    \ /  -----------
+⍝     √        n
+⍝ where x̄ is the mean average value and n is the number of values.
+⍝ Write a function that returns the population standard deviation of its numeric array right argument.
+standDevi ← {avg←((+⌿÷≢)⍣(⊃⍴⍴⍵)) ⍵ ⋄ 0.5 *⍨ (×/⍴⍵) ÷⍨ (+/⍣(⊃⍴⍴⍵)) 2 *⍨ ⍵ - avg}
+
+assert 1E¯10  ≥ 1.414213562 - standDevi 1 2 3 4 5
+assert 1E¯10  ≥ .86607005 - standDevi 10 10⍴⍳100  ⍝ and higher dimensions as well
+⎕ ← '05 ok'
