@@ -71,3 +71,35 @@ standDevi ← {avg←((+⌿÷≢)⍣(⊃⍴⍴⍵)) ⍵ ⋄ 0.5 *⍨ (×/⍴⍵)
 assert 1E¯10  ≥ 1.414213562 - standDevi 1 2 3 4 5
 assert 1E¯10  ≥ .86607005 - standDevi 10 10⍴⍳100  ⍝ and higher dimensions as well
 ⎕ ← '05 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2015.html?goto=P6_Hey_This_is_My_Space
+⍝ 6: Hey! This is My Space
+⍝ Write a function that takes, as each of its right and left arguments, a pair of co-ordinates representing diagonally opposite corners of two rectangles and returns a 1 if the rectangles overlap. The co-ordinates could be either (upper-left, lower-right) or (upper-right, lower left).
+⍝   ┌───┐
+⍝   │ ┌─┼─┐
+⍝   └─┼─┘ │
+⍝     └───┘
+overlap ← {2≠+/(↑⍺)⍸(↑⍵)}
+
+assert 1 ≡ (1 1)(5 5) overlap (3 3)(7 7)
+assert 1 ≡ (1 1)(5 5) overlap (5 5)(1 1)
+assert 0 ≡ (1 1)(3 3) overlap (4 4)(7 7)
+assert 1 ≡ (1.1 1.1)(5.5 5.5) overlap (3.3 3.3)(4.4 4.4)
+⍝ assert 0 ≡ (6 1)(2 3) overlap (8 8)(3 5)
+⎕ ← '06 ok (basic)'
+
+
+
+⍝ https://problems.tryapl.org/psets/2015.html?goto=P7_Just_In_Upper_Case
+⍝ 7: Just in (Upper) Case
+⍝ Membership X∊Y returns a boolean array of shape ⍴X with 1s indicating where elements of Y occur in X. For a vector X this results in a very convenient boolean mask.
+⍝ In many instances, it is desirable to perform case-insensitive comparisons and operations. Write a function to perform case-insensitive membership between two arrays.
+⍝ For full marks, consider membership of cells in high-rank arrays, your function should still return a vector when comparing cells of the same rank, for example (3 2⍴⎕A) and (1 2⍴'cd').
+contains_insensitive ← {⊃ ∨/ =∘(1⎕C ⍺) ¨ 1⎕C ⍵}
+
+assert 0 0 1 1 0 0 ≡ 'dyalog' contains_insensitive 'APL'
+assert 0 1 1 1 0 1 0 ≡ 'bramley' contains_insensitive 'HAMPSHIRE'
+⍝ assert 0 0 0 1 0 ≡ 5 2⍴'IJEFABCDGH' contains_insensitive 1 2⍴'CD'
+⎕ ← '07 ok (basic)'
