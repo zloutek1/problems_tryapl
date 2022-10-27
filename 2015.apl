@@ -109,7 +109,7 @@ assert 0 1 1 1 0 1 0 ≡ 'bramley' contains_insensitive 'HAMPSHIRE'
 ⍝ https://problems.tryapl.org/psets/2015.html?goto=P8_Unlucky_13
 ⍝ 8: Unlucky 13
 ⍝ You’ve just been hired by a new company and you’ve learned that the owner has triskaidekaphobia (fear of the number 13). As such he’s issued a corporate mandate that no output from any program shall include the number 13 – 12.99 will be used instead. Your boss wants you to implement a function to process output and change the 13s to 12.99. For now, you need only concern yourself with numeric data and not worry about 13s that are formatted in text.
-replace13 ← {s ← ⍵ ⋄ ((13=s)/s) ← 12.99 ⋄ s}
+replace13 ← 12.99@(=∘13)
 
 assert 12.99 ≡ replace13 13
 assert 0 1 2 3 4 5 6 7 8 9 10 11 12 12.99 14 ≡ replace13 ⍳15 
