@@ -116,3 +116,18 @@ assert 0 1 2 3 4 5 6 7 8 9 10 11 12 12.99 14 ≡ replace13 ⍳15
 assert 11 12 12.99 14 15 ≡ replace13 6+5 6 7 8 9
 assert 12.99 130 13.13 1300 ≡ replace13 13 130 13.13 1300  ⍝ we only care about the number 13
 ⎕ ← '08 ok'
+
+
+
+⍝ https://problems.tryapl.org/psets/2015.html?goto=P9_Id_Like_Mine_Scrambled_Please
+⍝ 9: I’d Like Mine Scrambled Please
+⍝ There is an urban myth about some research that was supposedly done at Cambridge University that purports changing the order of the interior letters in the words of a sentence does not significantly hamper the readability of the sentence.
+⍝ Put another way…
+⍝ Teher is an ubran mtyh aobut smoe rseaecrh taht was spuopesldy dnoe at Cmarbdige Uinevsrtiy taht pruoptrs cahgnnig the odrer of the itnreoir lteetrs in the wrods of a sneetcne deos not sgiinifactnly hmaepr the raeadibilty of the sneetcne.
+⍝ In the above example, for words that contain more than 3 letters, the first and last letters remain the same while all of the interior letters are transposed in groups of two, ignoring punctuation. If there are an odd number of letters in the interior of the word, then the last letter is left as it is.
+⍝ Write a function that takes a character vector word as its argument and returns the word’s letters juxtaposed as described above.
+juxtaposeInner ← {∊ ⌽¨ ⍵⊂⍨ 1@(0 (¯1+≢⍵))⊢ 0 1⍴⍨ ≢⍵}
+
+assert 'agrmunet' ≡ juxtaposeInner 'argument'
+assert 'tihs' 'is' 'aewosme' ≡ juxtaposeInner¨ 'this' 'is' 'awesome'
+⎕ ← '09 ok'
